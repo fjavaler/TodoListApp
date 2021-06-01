@@ -26,5 +26,5 @@ struct ItemModel: Identifiable, Codable {
   func updateCompletion() -> ItemModel {
     return ItemModel(id: self.id, title: self.title, isCompleted: !self.isCompleted)
   }
-
+  
 }

@@ -27,7 +27,7 @@ struct ListView: View {
       }
       .onDelete(perform: listViewModel.deleteItem)
       .onMove(perform: listViewModel.moveItem)
-    
+      
     }//: List
     .listStyle(PlainListStyle())
     .navigationTitle("Todo List 📝")
@@ -36,9 +36,9 @@ struct ListView: View {
       trailing:
         NavigationLink("Add", destination: AddView())
     )
-  
+    
   }//: View
-
+  
 }//: View
 
 // MARK: Preview
