@@ -23,6 +23,7 @@ struct TodoListApp: App {
         ListView()
       
       }//: NavigationView
+      .navigationViewStyle(StackNavigationViewStyle())
       .environmentObject(listViewModel)
     
     }//: WindowGroup

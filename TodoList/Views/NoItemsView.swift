@@ -50,6 +50,7 @@ struct NoItemsView: View {
           .offset(y: animate ? -7 : 0)
         
       }//: VStack
+      .frame(maxWidth: 400)
       .multilineTextAlignment(.center)
       .padding(40)
       .onAppear(perform: addAnimation)
