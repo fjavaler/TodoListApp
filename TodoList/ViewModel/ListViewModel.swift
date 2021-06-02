@@ -32,13 +32,14 @@ class ListViewModel: ObservableObject {
   // MARK: CRUD Operations
   /// Gets all of the starting items.
   func getItems() {
-    let newItems = [
-      ItemModel(title: "This is the first title", isCompleted: false),
-      ItemModel(title: "This is the second title", isCompleted: true),
-      ItemModel(title: "This is the third title", isCompleted: false)
-    ]
+    guard
+      // Checks to see if any items data exists in user defaults. Items stored as JSON objects in user defaults for this project. Normally Core Data would be used.
+      let data = UserDefaults.standard.data(forKey: itemsKey),
+      // Attempts to convert items data from type stored as (in this case, JSON) to ItemModels.
+      let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+    else { return }
     
-    items.append(contentsOf: newItems)
+    self.items = savedItems
   }
   
   

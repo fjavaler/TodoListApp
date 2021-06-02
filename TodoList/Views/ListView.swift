@@ -15,21 +15,36 @@ struct ListView: View {
   // MARK: Body
   var body: some View {
     
-    List {
+    ZStack {
       
-      ForEach(listViewModel.items) { item in
-        ListRowView(item: item)
-          .onTapGesture {
-            withAnimation(.linear) {
-              listViewModel.updateItem(item: item)
-            }
-          }
-      }
-      .onDelete(perform: listViewModel.deleteItem)
-      .onMove(perform: listViewModel.moveItem)
+      if listViewModel.items.isEmpty {
+        
+        NoItemsView()
+          .transition(AnyTransition.opacity.animation(.easeIn))
       
-    }//: List
-    .listStyle(PlainListStyle())
+      } else {
+        
+        List {
+          
+          ForEach(listViewModel.items) { item in
+            
+            ListRowView(item: item)
+              .onTapGesture {
+                withAnimation(.linear) {
+                  listViewModel.updateItem(item: item)
+                }
+              }
+            
+          }//: ForEach
+          .onDelete(perform: listViewModel.deleteItem)
+          .onMove(perform: listViewModel.moveItem)
+          
+        }//: List
+        .listStyle(PlainListStyle())
+        
+      }//: else
+      
+    }//: ZStack
     .navigationTitle("Todo List 📝")
     .navigationBarItems(
       leading: EditButton(),
