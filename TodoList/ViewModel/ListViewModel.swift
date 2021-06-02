@@ -11,12 +11,13 @@ import Foundation
 class ListViewModel: ObservableObject {
   
   // MARK: Properties
+  let itemsKey: String = "items_list"
+  // MARK: Computed Properties
   @Published var items: [ItemModel] = [] {
     didSet {
       saveItems()
     }
   }
-  let itemsKey: String = "items_list"
   
   // MARK: Init
   init() {
